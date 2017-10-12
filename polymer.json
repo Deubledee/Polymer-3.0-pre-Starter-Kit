@@ -1,0 +1,46 @@
+{
+    "entrypoint": "index.html",
+    "shell": "src/app-shell.js",
+    "fragments": [
+      "src/components/my-element.js"
+    ],
+    "sources": [
+      "src/**/*",
+      "images/**/*",
+      "package.json"
+    ],
+    "extraDependencies": [
+      "manifest.json",
+      "favicon.ico",
+      "node_modules/@webcomponents/webcomponentsjs/*.js"
+    ],
+    "builds": [
+      {
+        "name": "bundled-custom",
+        "bundle": {
+          "stripComments": true,
+          "inlineCss": false,
+          "sourcemaps": true
+        },
+        "addServiceWorker": true,
+        "insertPrefetchLinks": true,
+        "swPrecacheConfig": "sw-precache-config.js",
+        "addPushManifest": true,
+        "js": {
+          "compile": false,
+          "minify": true
+        },
+        "css": {
+          "minify": true
+        },
+        "html": {
+          "minify": true
+        }
+      }
+    ],
+    "lint": {
+      "rules": [
+        "polymer-2"
+      ]
+    }
+  }

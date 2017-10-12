@@ -1,0 +1,37 @@
+<style>
+    :host([video-page-active]) {
+        overflow: hidden;
+    }
+
+    :host([video-page-active]) iron-pages {
+        transform: translateY(-170px);
+    }
+
+    iron-pages {
+        transition: transform 0.3s;
+    }
+</style>
+<app-location route="{{route}}" use-hash-as-path></app-location>
+<app-route route="{{route}}" pattern="/:page" data="{{data}}"></app-route>
+<app-route route="{{route}}" pattern="/search" tail="{{searchTail}}"></app-route>
+<app-route route="{{route}}" pattern="/video" tail="{{videoTail}}" active="{{videoPageActive}}"></app-route>
+
+<h1>YOUTUBE PAGE</h1>
+
+<div class="card-content">
+    <youtube-toolbar collapsed$="{{videoPageActive}}">
+        <youtube-search route="{{searchTail}}" video-data="{{videoData}}">
+        </youtube-search>
+    </youtube-toolbar>
+    <iron-pages attr-for-selected="id" selected="{{data.page}}">
+        <search-results id="search" items="{{videos}}"></search-results>
+        <!-- The video-viewer has a app-route that consumes the tail of
+      another route -->
+        <video-viewer id="video" route="{{videoTail}}"></video-viewer>
+    </iron-pages>
+</div>
+<div class="card-actions">
+    <paper-button>Share</paper-button>
+    <paper-button>Explore!</paper-button>
+</div>
+</paper-card>
