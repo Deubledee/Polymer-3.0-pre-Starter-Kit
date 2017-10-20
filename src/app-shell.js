@@ -193,16 +193,6 @@ export class appShell extends PolymerElement {
                 type: String,
                 value: '',
                 notify: true,
-            },
-            scripts: {
-                type: Object,
-                value: function () {
-                    return {
-                        home: false,
-                        login: false,
-                        profile: false
-                    }
-                }
             }
         };
     }
@@ -224,14 +214,14 @@ export class appShell extends PolymerElement {
         this.imports(resolvedPageUrl, script)
     }
     imports(resolvedPageUrl, script) {
-        if (script in this.scripts && this.scripts[script] === false) {
+        var exists = document.querySelectorAll(`script[src^=${resolvedPageUrl}]`)[0]
+        if (exists === undefined) {
             let script1 = document.createElement('script')
             script1.setAttribute('type', 'module')
             script1.setAttribute('src', resolvedPageUrl)
             this.append(script1)
-            script1.onload = evt => {
-                this.scripts[script] = true
-                console.log('..script loaded!', resolvedPageUrl, this.scripts, this.scripts[script])
+            script1.onload = evt => {                t
+                console.log('..script loaded!', resolvedPageUrl, this.scripts[script])
             }
         }
     }
