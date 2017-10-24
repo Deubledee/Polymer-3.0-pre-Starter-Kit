@@ -213,7 +213,7 @@ export class appShell extends PolymerElement {
         var resolvedPageUrl = 'src/routes/my-' + script + '.js'
         this.imports(resolvedPageUrl)
     }
-    imports(resolvedPageUrl, script) {
+    imports(resolvedPageUrl) {
         var exists = document.querySelectorAll(`script[src^=${resolvedPageUrl}]`)[0]
         if (exists === undefined) {
             let script1 = document.createElement('script')
